@@ -56,7 +56,7 @@
     - 우리가 흔하게 사용하고 있는 *class, arrow function, const, let, default parameter*가 이 스크립트에 정의되어 있음
 - 매년마다 ECMAScript가 업데이트 됨
     - 모든 브라우저들이 ECMAScript의 표준사항을 잘 따라가고 있어 라이브러리 없이 **자바와 APIS만으로도 모든 브라우저에서 잘 동작할 수 있는 웹사이트나 웹 어플리케이션을 만들 수 있음**
-    - [사진]
+    - ! [2](https://github.com/khe020102/JavaScript1-13/blob/main/2.jpg)
         - 각 브라우저마다 ECMAScript의 표준안을 따라가는 다양한 엔진들이 존재
         - **V8 엔진** : node.js, electron에서도 많이 이용되고 있고 2020년 2월부터 마이크로소프트 엣지에서도 v8을 대체해서 사용
         - **BABEL** : 개발할 땐 최신버전의 ECMAScript를 쓰고 사용자들에게 배포할 때만 javaScript transcompiler를 이용해 **ECMAScript의 최신버전을 5나 6로 변환** 해서 변환된 코드를 생산해주는 것
