@@ -59,7 +59,7 @@
     - [사진]
         - 각 브라우저마다 ECMAScript의 표준안을 따라가는 다양한 엔진들이 존재
         - **V8 엔진** : node.js, electron에서도 많이 이용되고 있고 2020년 2월부터 마이크로소프트 엣지에서도 v8을 대체해서 사용
-        - **BABEL** : 개발할 땐 최신버전의 ECMAScript를 쓰고 사용자들에게 배포할 때만 javaScript transcompiler를 이용해 **이크마 스크립트의 최신버전을 5나 6로 변환** 해서 변환된 코드를 생산해주는 것
+        - **BABEL** : 개발할 땐 최신버전의 ECMAScript를 쓰고 사용자들에게 배포할 때만 javaScript transcompiler를 이용해 **ECMAScript의 최신버전을 5나 6로 변환** 해서 변환된 코드를 생산해주는 것
 
 
 ### 현재 가고있는 방향
