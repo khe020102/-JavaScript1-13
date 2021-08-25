@@ -20,7 +20,7 @@
     - **Microsoft**는 이 성공사례를 목격하고 브라우저의 무한한 잠재성을 확인해 Netscape사에서 출시한 브라우저를 **reverse engineering**(만들어진 프로그램의 binary 코드를 분석해 소스 코드를 복원해내는 과정)하여 Javascript와 엔진의 소스코드를 복원해 베껴와 조그만 기능을 변경해 자신만의 언어인 척 만들어 **JScript**로 이름을 변경해 시장에 내놓음
 - 1995년 : Microsoft가 **Internet explore**를 출시
     - 이로 인해 웹개발자들은 매우 다른 두 브라우저에서 잘 동작할 수 있는 웹사이트를 만들어야 했음 
-    - !https://github.com/khe020102/JavaScript1-13/blob/main/1.jpg
+    - ! https://github.com/khe020102/JavaScript1-13/blob/main/1.jpg
         - 이 당시, 웹사이트에서 이런 문구들을 보는 게 자연스러웠음(*다른 브라우저에서 사이트가 잘 구현됐으니 다른 브라우저를 다운 받아라*)
         - Netscape 사는 이 사태를 막고자 **ECMA International 단체에 찾아가서 Javascript로 표준안**을 만들어보자고 제안
 - 1997년 : **ECMAScript 1 language specification** 출시
