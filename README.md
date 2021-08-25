@@ -20,7 +20,7 @@
     - **Microsoft**는 이 성공사례를 목격하고 브라우저의 무한한 잠재성을 확인해 Netscape사에서 출시한 브라우저를 **reverse engineering**(만들어진 프로그램의 binary 코드를 분석해 소스 코드를 복원해내는 과정)하여 Javascript와 엔진의 소스코드를 복원해 베껴와 조그만 기능을 변경해 자신만의 언어인 척 만들어 **JScript**로 이름을 변경해 시장에 내놓음
 - 1995년 : Microsoft가 **Internet explore**를 출시
     - 이로 인해 웹개발자들은 매우 다른 두 브라우저에서 잘 동작할 수 있는 웹사이트를 만들어야 했음 
-    * ! [1](https://github.com/khe020102/JavaScript1-13/blob/main/1.jpg)
+    * ![1](https://github.com/khe020102/JavaScript1-13/blob/main/1.jpg)
         - 이 당시, 웹사이트에서 이런 문구들을 보는 게 자연스러웠음(*다른 브라우저에서 사이트가 잘 구현됐으니 다른 브라우저를 다운 받아라*)
         - Netscape 사는 이 사태를 막고자 **ECMA International 단체에 찾아가서 Javascript로 표준안**을 만들어보자고 제안
 - 1997년 : **ECMAScript 1 language specification** 출시
@@ -56,7 +56,7 @@
     - 우리가 흔하게 사용하고 있는 *class, arrow function, const, let, default parameter*가 이 스크립트에 정의되어 있음
 - 매년마다 ECMAScript가 업데이트 됨
     - 모든 브라우저들이 ECMAScript의 표준사항을 잘 따라가고 있어 라이브러리 없이 **자바와 APIS만으로도 모든 브라우저에서 잘 동작할 수 있는 웹사이트나 웹 어플리케이션을 만들 수 있음**
-    * ! [2](https://github.com/khe020102/JavaScript1-13/blob/main/2.jpg)
+    * ![2](https://github.com/khe020102/JavaScript1-13/blob/main/2.jpg)
         - 각 브라우저마다 ECMAScript의 표준안을 따라가는 다양한 엔진들이 존재
         - **V8 엔진** : node.js, electron에서도 많이 이용되고 있고 2020년 2월부터 마이크로소프트 엣지에서도 v8을 대체해서 사용
         - **BABEL** : 개발할 땐 최신버전의 ECMAScript를 쓰고 사용자들에게 배포할 때만 javaScript transcompiler를 이용해 **ECMAScript의 최신버전을 5나 6로 변환** 해서 변환된 코드를 생산해주는 것
