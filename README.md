@@ -7,7 +7,7 @@
     - 모자이크 웹 브라우저 경험을 토대로 해 조금 더 UI요소를 더해진 **Netscape Navigator**를 시장에 내놓음
         - 이 당시 html, css로 간단하게 웹페이지를 만들 수 있었는데, 정적인 웹사이트만 가능했었음
     - Netscape Navigator는 시장에서 80%의 점유율, **급격히 성장**
-    - 여기서 **동적인** 웹사이트를 만들기 위해 **Scripting 언어**를 추가하고자 함
+    - 여기서 **동적인** 웹사이트를 만들기 위해 **Scripting 언어** 를 추가하고자 함
         - Java 언어 : 개발자들이 쓰기에는 다소 무겁고 어려운 언어라서 패스
         -  Brendan Eich를 스카우트해 기존의 Scheme 스크립트 언어의 컨셉을 유지하며 문법을 java스럽게 만들고자 함
     - 브랜든은 단시간 안에 프로토타입을 베이스로 한 유연한 언어 개발
@@ -34,7 +34,7 @@
     - ECMA International 단체에 찾아가서 **ActionScript3라는 언어와 Tamarin이라는 엔진을 내세우면서 이걸로 표준안을 검토해보자고 제안**
     - 기존 브라우저에서 쓰여지고 있는 JScript, Javascript와 너무 달라 표준안을 진행하기엔 무리
     - 표준화를 앞에 두고 3사의 치열한 신경전이 벌어짐
-- 2004년 : Jesse James Garrett이 **AJAX(Asynchronous JavaScript and XML)**라는 기술 도입
+- 2004년 : Jesse James Garrett이 **AJAX(Asynchronous JavaScript and XML)** 라는 기술 도입
     - *비동기적으로 데이터를 서버에서 받아오고, 처리할 수 있도록* 도와주는 획기적인 기술
     - 도입에도 불구하고 표준화를 앞둔 3사의 치열한 신경전은 계속 됨
     - 그동안 다른 브라우저들이 많이 나오게 되고, 개발자들은 다양한 브라우저에서 동작하는 웹페이지를 만들어야 했음
@@ -87,15 +87,15 @@
 console.log('hello world!');
 ```
 라는 코드를 입력한 뒤, 폴더 안에 main.js라는 이름으로 저장한다.
-(만약 node.js가 깔려있다면, 폴더에 들어가 
+만약 node.js가 깔려있다면, 폴더에 들어가 
 ```
 node main.js
 ```
-라는 명령어만 실행해주면 화면에 hello world!가 출력된다.)
- - node.js에는 자바스크립트 엔진이 있어서 브라우저 없이도 자바스크립트 실행이 가능함
+라는 명령어만 실행해주면 화면에 hello world!가 출력된다.
+ - *node.js에는 자바스크립트 엔진이 있어서 브라우저 없이도 자바스크립트 실행이 가능함*
 
 1. Visual Studio Code를 실행한다.
-2. javascript 폴더에 들어가 index.html 프로그램을 만든다
+2. javascript 폴더에 들어가 index.html을 만든다
 3. 
 ```
 <!DOCTYPE html>
@@ -112,21 +112,21 @@ node main.js
 ```
     <script src="main.js"></script>를 작성해 타이틀 밑에 스크립트를 넣어 src는 방금 작성한 main.js를 연결하도록 한다.
 4. 우클릭하여 Open with Live Server를 눌러 브라우저로 바로 확인이 되게 한다.(확장팩 Liver Server 필요)
-5. 윈도우 사용자는 Ctrl + Shift + i, 맥 사용자는 Cmd + Option + i를 눌러 브라우저의 개발자 도구 툴을 연다.
+5. 윈도우 사용자는 *Ctrl + Shift + i*, 맥 사용자는 *Cmd + Option + i*를 눌러 브라우저의 *개발자 도구 툴*을 연다.
 6. console에 우리가 작성한 hello world를 볼 수 있다.
-[사진]
-    - 브라우저에 Dev Tools를 잘 활용하면 공부할 때 유용하게 사용 가능
-         - Elements 탭 : html에서 작성한 요소들을 확인하고 검사하는 기능
-         - console 탭 : 코드에서 작성한 메시지를 확인할 수도 있고, 자바스크립트를 실행해 동적으로 요소를 검사하고 붙여넣고 지울 수 있는 기능
-         - Sources 탭 : 디버깅할 때 유용하게 사용 가능
-         - Network 탭 : 네트워크가 어떻게 발생하는지, 얼마가 많은 사이즈들의 데이터가 오고가는지 검사할 수 있는 기능
+![3](https://user-images.githubusercontent.com/68580600/130898023-0df51214-9072-45b5-8c84-10af87189718.jpg)
+    - 브라우저에 **Dev Tools**를 잘 활용하면 공부할 때 유용하게 사용 가능
+         - **Elements 탭** : html에서 작성한 요소들을 확인하고 검사하는 기능
+         - **console 탭** : 코드에서 작성한 메시지를 확인할 수도 있고, 자바스크립트를 실행해 동적으로 요소를 검사하고 붙여넣고 지울 수 있는 기능
+         - **Sources 탭** : 디버깅할 때 유용하게 사용 가능
+         - **Network 탭** : 네트워크가 어떻게 발생하는지, 얼마가 많은 사이즈들의 데이터가 오고가는지 검사할 수 있는 기능
 
 ### 자바스크립트 관련 사이트
-#### !(ecma-international.org)
+#### (www.ecma-international.org)
     - 공식적인 사이트고 문법에 관련된 것이 잘 정리되어있는데, 개발자가 보기엔 난해할 수도 있음
-#### !(developer.mozilla.org)
+#### 🔴(www.developer.mozilla.org)
     - 굉장히 수많은 개발자들이 가는 사이트(html, css 배울 때도 유용)
-#### !(www.w3schools.com)
+#### (www.w3schools.com)
     - 노르웨이 한 회사가 만든 사이트라서 공식적인 사이트는 아님
     
 ### async vs defer
