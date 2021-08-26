@@ -184,6 +184,7 @@ ex)
 ![4](https://user-images.githubusercontent.com/68580600/130899713-1dcb7be0-cc90-4e27-a57a-e66858f681c7.jpg)
 
 브라우저에 문제될 건 없지만, 비상식적인 코드임
+
 2. use strict를 정의하고 선언되지 않은 a의 값을 할당했을 때
 
 ![5](https://user-images.githubusercontent.com/68580600/130899793-bca96561-cbc3-4074-a3ef-b61e8ad63a43.jpg)
