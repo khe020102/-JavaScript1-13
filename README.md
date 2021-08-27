@@ -337,3 +337,52 @@ constant 이용하면 immutable data type
 - 이렇게 해야 코드를 변경하거나 다른 개발자가 코드를 바꿀 때도 실수를 방지해줄 수 있음
 
 ### Variable types
+
+자바스크립트 데이터 타입에는 어떤 것이 있을까?
+
+primitive type(single item) : 더이상 작은 단위로 나눠질 수 있는 한 가지 아이템
+- number, string, boolean, null, undefined symbol
+- 
+object type : 위 싱글 아이템들을 묶어서 한 박스로 관리할 수 있는 것
+
+function(자바에만 있는 데이터 타입)
+- first-class function : function도 다른 데이터처럼 변수에 할당이 가능하고 함수의 인자로도 전달이 되고 함수의 return 타입으로도 사용 가능한 것
+
+
+C data types for number
+
+```
+int main() {
+    short a = 12 // 2 bytes
+    int a = 12; // 4 bytes
+    long b= 1234; // 8 bytes
+    float d = 1.2f; // 4 bytes
+    double e = 8.2; // 16 bytes
+    return 0;
+}
+```
+C언어는 낮은 레벨의 언어로 불리우는데 개발자들이 프로그램을 짜면서 조금 더 세세하게 메모리를 관리할 수 있기 때문이다.
+
+(short, int, long은 정수를 할당할 때 쓰고 float, double은 실수를 할당할 때 많이 씀 얼마나 큰 사이즈의 데이터를 담느냐에 따라 short를 쓸 건지
+int를 쓸 건지 사전에 생각하고 변수를 할당해야 함)
+
+Jave data types for number
+
+```
+class Main {
+    public static void main(String[ ] args) {
+        byte a= 12;
+        short b = 12;
+        long c = 12;
+        int d = 12;
+        float e = 1.2f;
+        double f = 1.2;
+       }
+}
+```
+숫자에만 관련된 데이터타입이 굉장히 많아 작성하기 전에 얼마나 큰 양의 데이터를 저장해야하는지 생각하고 선언해야 함
+
+Javascript data tupes for number
+number type만 있고, number라고 데이터 타입을 선언하지도 않아도 됨
+
+14:40초부터 https://www.youtube.com/watch?v=eyqqwoH8dhM
