@@ -382,7 +382,48 @@ class Main {
 ```
 숫자에만 관련된 데이터타입이 굉장히 많아 작성하기 전에 얼마나 큰 양의 데이터를 저장해야하는지 생각하고 선언해야 함
 
-Javascript data tupes for number
-number type만 있고, number라고 데이터 타입을 선언하지도 않아도 됨
+Javascript data types for number
 
-14:40초부터 https://www.youtube.com/watch?v=eyqqwoH8dhM
+```
+let a = 12;
+let b = 1.2;
+```
+
+number type만 있어 얼마나 큰 사이즈를 할당할 건지 생각하지 않아도 되고, number라고 데이터 타입을 선언하지도 않아도 됨
+
+Typescript data types for number
+```
+let a: number = 12;
+let b: number = 1.2;
+```
+
+Typescript에서는 number라고 정확히 명시해서 작성해야 함
+
+### infinity
+
+number에서도 특별한 값이 미리 정해져 있는데 대부분의 프로그래밍 언어에서도 적용됨
+
+![0827 13](https://user-images.githubusercontent.com/68580600/131064794-4419bb16-337e-4f5c-bf19-24551f36eaae.jpg)
+
+
+숫자를 0으로 나누게 되면 그래프에서 무한대의 숫자 값이 생기는 것을 infinity라고 함
+
+```
+const infinity = 1/ 0; // positive한 값을 0으로 나누면 Infinity가 됨
+const nefativeInfinity = -1 / 0; // -와 같은 negative한 값을 0으로 나누면 negativeInfinity가 됨
+const nAn = `not a number' / 2; // 숫자가 아닌 string을 숫자로 나누게 되면 nAn값이 출력됨
+console.log(infinity);
+console.log(negativeInfinity);
+console.log(nAn);
+```
+
+위 3가지 값은 특별한 숫자의 값이고 중요함
+
+나중에 dom 요소를 자바스크립트를 이용해서 포지션을 바꾼다던지 다양한 계산을 해야할 때 나누고싶은 값이 0인지 아닌지, 숫자인지 아닌지 확인하지 않고
+
+연산을 한다면 위 세가지 값을 받을 수 있게 되므로 사용자에게 오류가 발생하게 됨
+
+연산할 때 그 값이 유효한 값인지 확인하고 연산을 하는 것이 중요
+
+
+16:30초부터
