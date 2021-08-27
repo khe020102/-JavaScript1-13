@@ -132,6 +132,7 @@ node main.js
          
 ***
 ### 자바스크립트 관련 사이트
+
 #### (www.ecma-international.org)
     - 공식적인 사이트고 문법에 관련된 것이 잘 정리되어있는데, 개발자가 보기엔 난해할 수도 있음
 #### 🔴(www.developer.mozilla.org)
@@ -140,6 +141,7 @@ node main.js
     - 노르웨이 한 회사가 만든 사이트라서 공식적인 사이트는 아님
 ***    
 ### async vs defer
+
 #### html에서 자바스크립트를 포함할 때 어떻게 포함하는 게 더 효율적일까?
 사용자가 html을 다운 받았을 때, *브라우저는 한 줄씩 분석*하고 이를 css와 병합해 dom 요소로 변환하는 과정을 거치게 된다.
 
@@ -176,6 +178,7 @@ node main.js
     
 ***
 ### javascript를 이용할 때 맨 위에 'use strict';를 정의해주면 좋음
+
 - use strict는 ECMAScript 5에 추가되어 이를 선언하게 되면 앞서 말한 비상식적인 것을 사용할 수 없게 됨
     - javascript는 굉장히 유연한 언어로 만들어졌는데, 유연해서 때로는 많이 실수할 수도 있어 위험하고 선언되지 않는 변수를 할당한다던지, 기존에 존재하는 프로토타입을 변경한다던지 비상식적인 것들은 다른 언어를 공부하고온 개발자들이 봤을 때 이해 불가
 
@@ -194,3 +197,143 @@ ex)
 그대로 에러를 출력함
 
 **strict를 정의하면 상식적인 범위 안에서 자바스크립트를 이용할 수 있게 해주고 자바스크립트 엔진이 효율적으로 더 빠르게 자바스크립트를 분석할 수 있게 해줌**
+
+
+## 자바스크립트 3. 데이터타입, data types, let vs var, hoisting
+
+### Variable(변수 : 변경될 수 있는 값)
+
+자바스크립트에서 변수를 만들기 위해 **let** 이라는 키워드를 이용 (ES6에서 추가된 언어)
+
+```
+'use strict'; 
+
+let name = 'ellie'; // let 키워드를 이용해 name이라는 변수를 선언함과 동시해 ellie라는 변수의 값을 할당
+console.log(name); // name(ellie) 출력
+name = 'hello'; // name이라는 변수에 hello라는 값을 다시 할당
+console.log(name); name(hello) 출력
+```
+결과
+
+![0827 6](https://user-images.githubusercontent.com/68580600/131058273-66174996-690f-4228-9166-4913c0924f21.jpg)
+
+- 어플리케이션을 할당하면 어플리케이션마다 쓸 수 있는 메모리가 할당되어짐
+- 메모리는 텅 빈 박스인데 어플리케이션마다 쓸 수 있는 박스의 개수가 제한적으로 할당되어짐
+- let이라는 키워드를 이용해 name이라는 변수를 정의하게 되면 한 가지의 박스를 가리킬 수 있는 포인터가 생기게 되는 것
+- name이라는 변수가 가리키고 있는 메모리에 ellie라는 값을 저장할 수 있음
+- 추후에 name이 가리키고 있는 곳에 다른 값을 넣어서 저장할 수 있음
+
+### Block scope
+괄호(블럭)를 이용해 코드를 블럭 안에 작성하게 되면 블럭 밖에서는 블럭 안에 있는 내용을 볼 수 없게 되는 것
+- console.log를 이용해 블럭 밖에서 name이라는 변수에 접근하면 아무 값도 출력되지 않음
+```
+ 'use strict'; 
+
+{
+    let name = 'ellie';
+    console.log(name);
+    name = 'hello';
+    console.log(name);
+}
+console.log(name);
+
+```
+결과
+
+![0827 7](https://user-images.githubusercontent.com/68580600/131058881-f34dfec6-5a05-47db-b114-b9814fd67376.jpg)
+
+- 반대로 블럭을 쓰지 않고 파일 안에다 바로 정의해서 쓰는 변수들을 global scope이라고 부름
+- global한 아이들은 어느 곳에서나 접근 가능해 블럭 밖에서 불러도 출력 가능
+```
+'use strict'; 
+
+let globalName = 'global name';
+{
+    let name = 'ellie';
+    console.log(name);
+    name = 'hello';
+    console.log(name);
+    console.log(globalName);
+}
+console.log(name);
+console.log(globalName);
+```
+
+결과
+![0827 8](https://user-images.githubusercontent.com/68580600/131059116-c0ff54c9-89cc-420d-b771-a0d43ff3eebe.jpg)
+
+global한 변수들은 어플리케이션이 실행되는 순간부터 끝날 때까지 항상 메모리에 탑재되어 있어 최소한으로 쓰는 것이 좋음
+
+가능하면 class나 함수 등에서 필요한 곳에서만 정의하는 것이 좋음
+
+### let과 var
+함수를 선언할 때 지금은 let을 쓰지만 옛날엔 var를 사용했음
+var를 쓰면 안되는 이유
+대부분의 프로그래밍 언어에선 변수를 선언하고 나서 값을 할당하는 게 정상적임
+1. var를 사용하면 선언도 하기 전에 값을 할당하고, 값을 할당하기 전에도 출력 가능
+- var hoisting : 어디 선언했느냐 상관없이 항상 제일 위로 선언을 끌어올려주는 것
+```
+console.log(age);
+age = 4;
+console.log(age);
+var age;
+```
+![0827 10](https://user-images.githubusercontent.com/68580600/131060638-0d7e90e3-3d21-4e57-85d2-234044ebb392.jpg)
+변수는 정의되어있지만 값이 정해지지 않다는 undefined라고 출력
+값을 할당한 뒤에 출력한다면 4라고 출력
+
+let을 이용해서 똑같이 출력하면
+```
+console.log(age);
+age = 4;
+console.log(age);
+var age;
+
+name = 4;
+let name;
+```
+
+![0827 11](https://user-images.githubusercontent.com/68580600/131060834-3b599701-fa02-4a5c-aaf3-eb1587b57981.jpg)
+
+let을 선언하기도 전에 값을 넣었다는 오류가 발생(정상적인 현상)
+
+2. block scope이 없음
+
+```
+{
+    age = 4;
+    var age;
+}
+console.log(age);
+```
+
+![0827 12](https://user-images.githubusercontent.com/68580600/131061279-437f2198-a7cc-43ff-a0b4-4e0437c395fb.jpg)
+
+age를 블럭 안에 선언했음에도 불구하고 밖에서 출력하면 정상적으로 출력됨
+아무리 깊은 곳에 블럭을 넣어 선언해도 아무데서나 보임
+초기에는 이런 유연성을 이용했지만 규모 있는 프로젝트를 하다보면 선언하지도 않은 값들이 할당되는 문제 발생
+
+### Constant
+한 번 할당하면 값이 절대 바뀌지 않는 것
+값이 계속 변경될 수 있는 것 : Mutable data type (let 키워드를 이용한 변수)
+constant 이용하면 immutable data type
+
+장점
+1. security
+
+- 한 번 작성한 값을 해커들이 이상한 값을 삽입해서 값을 계속 변경해나가는 것이 가능한데 constant는 이를 방지해줌
+2. thread safety
+- 어플리케이션이 실행되면 한 가지 프로세스가 할당이 되고 그 프로세스 안에서는 다양한 thread가 동시에 돌아가면서 어플리케이션을 효율적으로 빠르게
+
+돌아갈 수 있도록 도와줌
+
+다양한 thread들이 동시에 이 변수에 접근해서 값을 변경할 수 있는데 동시에 값을 변경하는 것은 위험한 것이므로 가능하면 값이 변하지 않는 것을
+
+사용하는 게 좋음
+
+3. reduce human mistakes
+
+변경되야할 이유가 없다면 웬만해선 const를 이용해 프로그램을 작성해야 좋음
+- 이렇게 해야 코드를 변경하거나 다른 개발자가 코드를 바꿀 때도 실수를 방지해줄 수 있음
+
+### Variable types
