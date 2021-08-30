@@ -348,6 +348,7 @@ object type : 위 싱글 아이템들을 묶어서 한 박스로 관리할 수 �
 function(자바에만 있는 데이터 타입)
 - first-class function : function도 다른 데이터처럼 변수에 할당이 가능하고 함수의 인자로도 전달이 되고 함수의 return 타입으로도 사용 가능한 것
 
+### Number
 
 C data types for number
 
@@ -407,6 +408,7 @@ number에서도 특별한 값이 미리 정해져 있는데 대부분의 프로�
 
 
 숫자를 0으로 나누게 되면 그래프에서 무한대의 숫자 값이 생기는 것을 infinity라고 함
+not a number(숫자가 아닌 경우), 숫자가 아닌 string을 숫자로 나누게 되면 nAn이라고 출력됨
 
 ```
 const infinity = 1/ 0; // positive한 값을 0으로 나누면 Infinity가 됨
@@ -421,9 +423,137 @@ console.log(nAn);
 
 나중에 dom 요소를 자바스크립트를 이용해서 포지션을 바꾼다던지 다양한 계산을 해야할 때 나누고싶은 값이 0인지 아닌지, 숫자인지 아닌지 확인하지 않고
 
-연산을 한다면 위 세가지 값을 받을 수 있게 되므로 사용자에게 오류가 발생하게 됨
+연산을 한다면 위 세가지 값을 받을 수 있게 되므로 사용자에게 에러가 발생하게 됨
 
 연산할 때 그 값이 유효한 값인지 확인하고 연산을 하는 것이 중요
 
+### String
 
-16:30초부터
+한가지 글자든, 여러가지의 글자든 string으로 할당이 되며 +를 이용해 문자를 붙일 수도 있음
+
+template literals(string) : `를 이용해 원하는 string을 적고 $과 {}를 이용하면 변수의 값이 자동적으로 붙여져서 나옴
+
+```
+const char = 'c';
+const brendan = 'brendan';
+const greeting = 'hello' + brendan; // +를 이용해 문자를 합침
+console.log(`value: ${greeting}, type: ${typeof greeting}`);
+const helloBob = `hi ${brendan}!`; // template literals(string)
+console.log(`value: ${helloBob}, type: ${typeof helloBob}`);
+console.log('value: ' + helloBob + ' type: ' + typeof helloBob); // 위 template literals보다 더 불편함
+```
+
+![0830 1](https://user-images.githubusercontent.com/68580600/131275781-d678c8f9-e197-44d4-802a-bcbe4685fb89.jpg)
+
+hello 와 Brendan이 합쳐지고, type도 string으로 잘 나오는 걸 확인할 수 있다.
+
+### Boolean
+
+참과 거짓
+
+false : 0, null, undefined, NaN, ''
+true : any other value
+
+```
+const canRead = true; //true라고 바로 값을 할당할 수 있음
+const test = 3 < 1; //3이 1보다 작다는 것은 false이므로 false로 할당됨
+console.log(`value: ${canRead}, type: ${typeof canRead}`);
+console.log(`value: ${test}, type: ${typeof test}`);
+```
+
+![0830 2](https://user-images.githubusercontent.com/68580600/131276449-ad5687cc-45ba-4fda-9550-1069ee7ae09d.jpg)
+
+### null과 undefined
+
+null이라고 할당하는 경우 내가 명확하게 너는 텅텅 빈 값, 아무것도 아니라고 지정해주는 것
+
+undefined는 선언은 되었지만 아무것도 값이 지정되어져 않다는 것
+
+![0830 3](https://user-images.githubusercontent.com/68580600/131277378-d53d710a-3cf7-4b31-807c-93bf516c6d5b.jpg)
+
+### symbol
+
+나중에 맵이나 자료구조에서 고유한 식별자가 필요하거나 동시다발적으로 일어날 수 있는 코드에서 우선순위를 주고싶을 때 쓰여짐
+
+간혹 식별자를 string을 이용해서 사용하는 경우가 있는데 다른 모듈이나 파일에서 동일한 string을 썼을 때 동일한 식별자로 인식함
+
+하지만 symbol은 동일한 것을 이용해 symbol을 만들어도 다른 경우로 인식
+
+```
+const symbol1 = Symbol('id');
+const symbol2 = Symbol('id');
+console.log(symbol1 === symbol2);
+```
+
+![0830 4](https://user-images.githubusercontent.com/68580600/131278455-501a7c29-e1b2-4380-9543-f9e7cecf61fc.jpg)
+
+-> 둘이 다른 symbol로 인식하여 false 출력됨
+
+Symbol은 동일한 string을 작성해도 다른 symbol로 만들어지므로 주어지는 string에 상관없이 고유한 식별자를 만들 때 사용되어짐
+
+string이 똑같다면 동일한 symbol을 만들고 싶을 때 symbol.for을 사용해주면 됨
+
+```
+const gSymbol1 = Symbol.for('id');
+const gSymbol2 = Symbol.for('id');
+console.log(gSymbol1 === gSymbol2);
+```
+
+![0830 5](https://user-images.githubusercontent.com/68580600/131278763-80162005-0ca1-4cbc-83cf-be551782d0ed.jpg)
+
+-> 둘이 같은 symbol로 인식하여 true 출력됨
+
+symbol은 바로 출력하면 error가 발생하므로 .description을 이용해 string으로 변환하여 출력해야함
+
+```
+console.log(`value: ${symbol1}, type: ${typeof symbol1}`);
+```
+
+![0830 6](https://user-images.githubusercontent.com/68580600/131279033-59cb36b3-e9c3-4015-8763-e0c00063c431.jpg)
+
+-> 바로 출력하여 error가 발생
+
+```
+console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
+```
+
+![0830 7](https://user-images.githubusercontent.com/68580600/131279064-d0bb83cb-d585-4346-bc4d-d61d865f8312.jpg)
+
+
+-> .description을 이용해 변환하여 출력해서 정상적으로 출력되어짐
+
+### 🔴 (자바의 하이라이트) Dynamic typing
+
+dynamically typed language라는 뜻으로 C나 자바언어는 statically tyoed language로 변수를 선언할 때 어떤 타입인지 결정하여 타입을 같이 설명했어야 함
+
+하지만 자바스크립트는 선언할 때 어떤 타입인지 선언하지 않고 프로그램이 동작할 때 할당된 값에 따라 타입이 변경될 수 있음
+
+하지만 다수의 엔지니어, 규모가 큰 프로젝트를 만들 때 이런 dynamic typing 때문에 피해를 볼 수도 있다.
+
+```
+let text = 'hello';
+console.log(`value: ${text}, type: ${typeof text}`);
+text = 1;
+console.log(`value: ${text}, type: ${typeof text}`);
+```
+
+![0830 8](https://user-images.githubusercontent.com/68580600/131279705-65b7502f-678a-44f3-8af3-998c888b641c.jpg)
+
+
+hello라는 string을 할당하게 되면 text는 string이라는 변수가 됨
+
+![0830 9](https://user-images.githubusercontent.com/68580600/131279755-e1596608-a0ce-4048-affd-34c5a56fb328.jpg)
+
+
+하지만 text에 다시 숫자 1을 할당하게 되면 type이 number로 변경이 됨
+
+![0830 10](https://user-images.githubusercontent.com/68580600/131279763-7c7070d3-67b0-4aef-ab82-cf3027ab5d00.jpg)
+
+
+text에 string과 number를 합치면 number를 string으로 인식해 type이 string으로 변경이 됨
+
+![0830 11](https://user-images.githubusercontent.com/68580600/131279768-53cd80b5-9c9d-49f9-a0ec-509a434941ac.jpg)
+
+
+string과 string을 나누면 type이 number로 변경이 되고 나누기가 연산됨
+
