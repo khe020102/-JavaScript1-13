@@ -727,5 +727,6 @@ console.log(10 >= 6); // greater than or equal
 
 6. Logical operators: || (or), && (and), ! (not)
 
-
+https://www.youtube.com/watch?v=YBjufjBaxHo
+8:02~
 
