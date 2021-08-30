@@ -223,6 +223,8 @@ console.log(name); name(hello) 출력
 - name이라는 변수가 가리키고 있는 메모리에 ellie라는 값을 저장할 수 있음
 - 추후에 name이 가리키고 있는 곳에 다른 값을 넣어서 저장할 수 있음
 
+***
+
 ### Block scope
 괄호(블럭)를 이용해 코드를 블럭 안에 작성하게 되면 블럭 밖에서는 블럭 안에 있는 내용을 볼 수 없게 되는 것
 - console.log를 이용해 블럭 밖에서 name이라는 변수에 접근하면 아무 값도 출력되지 않음
@@ -244,6 +246,7 @@ console.log(name);
 
 - 반대로 블럭을 쓰지 않고 파일 안에다 바로 정의해서 쓰는 변수들을 global scope이라고 부름
 - global한 아이들은 어느 곳에서나 접근 가능해 블럭 밖에서 불러도 출력 가능
+
 ```
 'use strict'; 
 
@@ -266,9 +269,11 @@ global한 변수들은 어플리케이션이 실행되는 순간부터 끝날 �
 
 가능하면 class나 함수 등에서 필요한 곳에서만 정의하는 것이 좋음
 
+***
+
 ### let과 var
 함수를 선언할 때 지금은 let을 쓰지만 옛날엔 var를 사용했음
-var를 쓰면 안되는 이유
+* var를 쓰면 안되는 이유? * 
 대부분의 프로그래밍 언어에선 변수를 선언하고 나서 값을 할당하는 게 정상적임
 1. var를 사용하면 선언도 하기 전에 값을 할당하고, 값을 할당하기 전에도 출력 가능
 - var hoisting : 어디 선언했느냐 상관없이 항상 제일 위로 선언을 끌어올려주는 것
@@ -313,6 +318,8 @@ age를 블럭 안에 선언했음에도 불구하고 밖에서 출력하면 정�
 아무리 깊은 곳에 블럭을 넣어 선언해도 아무데서나 보임
 초기에는 이런 유연성을 이용했지만 규모 있는 프로젝트를 하다보면 선언하지도 않은 값들이 할당되는 문제 발생
 
+***
+
 ### Constant
 한 번 할당하면 값이 절대 바뀌지 않는 것
 값이 계속 변경될 수 있는 것 : Mutable data type (let 키워드를 이용한 변수)
@@ -336,6 +343,8 @@ constant 이용하면 immutable data type
 변경되야할 이유가 없다면 웬만해선 const를 이용해 프로그램을 작성해야 좋음
 - 이렇게 해야 코드를 변경하거나 다른 개발자가 코드를 바꿀 때도 실수를 방지해줄 수 있음
 
+***
+
 ### Variable types
 
 자바스크립트 데이터 타입에는 어떤 것이 있을까?
@@ -347,6 +356,8 @@ object type : 위 싱글 아이템들을 묶어서 한 박스로 관리할 수 �
 
 function(자바에만 있는 데이터 타입)
 - first-class function : function도 다른 데이터처럼 변수에 할당이 가능하고 함수의 인자로도 전달이 되고 함수의 return 타입으로도 사용 가능한 것
+
+***
 
 ### Number
 
@@ -400,6 +411,8 @@ let b: number = 1.2;
 
 Typescript에서는 number라고 정확히 명시해서 작성해야 함
 
+***
+
 ### infinity
 
 number에서도 특별한 값이 미리 정해져 있는데 대부분의 프로그래밍 언어에서도 적용됨
@@ -427,6 +440,8 @@ console.log(nAn);
 
 연산할 때 그 값이 유효한 값인지 확인하고 연산을 하는 것이 중요
 
+***
+
 ### String
 
 한가지 글자든, 여러가지의 글자든 string으로 할당이 되며 +를 이용해 문자를 붙일 수도 있음
@@ -447,6 +462,7 @@ console.log('value: ' + helloBob + ' type: ' + typeof helloBob); // 위 template
 
 hello 와 Brendan이 합쳐지고, type도 string으로 잘 나오는 걸 확인할 수 있다.
 
+***
 ### Boolean
 
 참과 거짓
@@ -463,6 +479,8 @@ console.log(`value: ${test}, type: ${typeof test}`);
 
 ![0830 2](https://user-images.githubusercontent.com/68580600/131276449-ad5687cc-45ba-4fda-9550-1069ee7ae09d.jpg)
 
+***
+
 ### null과 undefined
 
 null이라고 할당하는 경우 내가 명확하게 너는 텅텅 빈 값, 아무것도 아니라고 지정해주는 것
@@ -470,6 +488,8 @@ null이라고 할당하는 경우 내가 명확하게 너는 텅텅 빈 값, 아
 undefined는 선언은 되었지만 아무것도 값이 지정되어져 않다는 것
 
 ![0830 3](https://user-images.githubusercontent.com/68580600/131277378-d53d710a-3cf7-4b31-807c-93bf516c6d5b.jpg)
+
+***
 
 ### symbol
 
@@ -522,13 +542,15 @@ console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`);
 
 -> .description을 이용해 변환하여 출력해서 정상적으로 출력되어짐
 
+***
+
 ### 🔴 (자바의 하이라이트) Dynamic typing
 
 dynamically typed language라는 뜻으로 C나 자바언어는 statically tyoed language로 변수를 선언할 때 어떤 타입인지 결정하여 타입을 같이 설명했어야 함
 
 하지만 자바스크립트는 선언할 때 어떤 타입인지 선언하지 않고 프로그램이 동작할 때 할당된 값에 따라 타입이 변경될 수 있음
 
-하지만 다수의 엔지니어, 규모가 큰 프로젝트를 만들 때 이런 dynamic typing 때문에 피해를 볼 수도 있다.
+하지만 다수의 엔지니어, 규모가 큰 프로젝트를 만들 때 이런 dynamic typing 때문에 피해를 볼 수도 있음
 
 ```
 let text = 'hello';
@@ -556,4 +578,111 @@ text에 string과 number를 합치면 number를 string으로 인식해 type이 s
 
 
 string과 string을 나누면 type이 number로 변경이 되고 나누기가 연산됨
+
+## 자바스크립트 4. 코딩의 기본 operator, if, for loop 
+
+
+### Variable
+
+Variable은 메모리에 값을 읽고 쓰는 게 가능함
+
+name이라는 변수에 ellie라는 값을 할당한 다음에 hello라고 변경이 가능한 것
+
+Const는 읽기만 가능해 const를 선언함과 값을 할당한 뒤에는 읽기만 가능하고 다시 다른 값으로 쓰는 것이 불가능
+
+자바스크립트에서는 변수가 바뀔 좋은 이유가 없다면 웬만해선 const로 작성하는 것이 좋음
+
+메모리의 값이 저장되는 방법은 primitive타입인지, object타입인지에 따라 메모리에 값이 다른 방식으로 저장됨
+
+primitive 타입은 값 자체가 메모리에 저장됨
+
+object 타입은 너무 커서 메모리에 한 번에 들어갈 수 없어 const를 선언하고 object를 할당하면 reference(실제로 object를 가리키고 있는 곳)
+
+reference를 통해 실제로 object가 담긴 메모리를 가리키게 되는 것임
+
+***
+
+### Immutable type, Mutable type
+
+primitive 파일은 value로 값이 저장되고 object 타입은 object를 가리키는 reference가 메모리에 저장되는 것
+
+데이터 타입에는 Immutable type, Mutable type이 있다.
+
+Immutable type은 데이터 값을 절대 변경할 수 없는 것, primitive type은 값을 통째로 메모리에 올렸다가 다른 string으로 변경이 가능하지 원래 있던 값 자체를 변경하는 것을 불가능
+
+object중에서도 forzen object 들은 값이 변경 불가능하기 때문에 이것들은 Immutable type임
+
+변경이 가능한 type은 object
+
+object는 스스로 계속 변경이 가능하므로 Mutable data type임
+
+자바스크립트에서는 기본적으로 모든 object는 변경이 가능함
+
+### Operator
+
+#### String concatenation
+
+```
+console.log('my' + ' cat'); // +를 이용해 문자열과 문자열을 합할 수 있음
+console.log('1' + 2); // 문자열에 숫자를 더하게 되면 숫자가 문자로 변환돼 합해질 수 있음
+console.log(`string literals: 1 + 2 = ${1 + 2}`); // `를 활용해 string literals를 만들 수 있음
+```
+
+![0830 12](https://user-images.githubusercontent.com/68580600/131300122-33868b5b-5d90-4de8-89f2-b4e7352a7521.jpg)
+
+![0830 13](https://user-images.githubusercontent.com/68580600/131300339-c63104f7-432c-45b7-9f53-fd087328f551.jpg)
+
+string literals는 줄바꿈을 하거나 중간에 특수기호 ''를 이용해도 그대로 문자열로 변환되어서 나옴
+
+```
+console.log('ellie's book');
+```
+
+![0830 15](https://user-images.githubusercontent.com/68580600/131300772-6ea4bbc2-9c1c-49fa-8f03-58fe0cb76b6c.jpg)
+
+위처럼 ''로 문자열을 만들게 되면 중간에 ''나 특수기호가 인식이 되지 않으므로
+
+```
+console.log('ellie\'s book');
+```
+
+![0830 14](https://user-images.githubusercontent.com/68580600/131300758-9d51bccd-df16-4dcc-b479-5d080d508c95.jpg)
+
+' 뒤에 \를 작성해주어야 함
+
+```
+console.log('ellie\'s \n\tbook');
+```
+
+![0830 16](https://user-images.githubusercontent.com/68580600/131301017-ddaa031a-fd17-4238-9063-9331393d52ed.jpg)
+
+줄바꿈을 사용하려면 \n을 작성해주어야 하고 \t를 통해 들여쓰기도 가능함
+
+#### Numeric operators
+
+```
+console.log(1 + 1);
+console.log(1 - 1);
+console.log(1 / 1);
+console.log(1 * 1);
+console.log(5 % 2);
+console.log(2 ** 3);
+```
+
+![0830 17](https://user-images.githubusercontent.com/68580600/131301315-9ba5d956-b977-4999-9a06-000f21f5e7db.jpg)
+
+
+숫자들을 더하고 빼고 곱하고 나누고 나머지값, 2의 제곱과 같은 숫자를 연산할 수 있음
+
+#### Increment and decrement operators
+
+```
+let counter = 2;
+const preIncrement = ++counter; // ++counter는 counter = counter + 1;과 동일해 preIncrement에 3이라는 숫자가 저장됨
+```
+
+![0830 18](https://user-images.githubusercontent.com/68580600/131301756-29fe1e4d-c9ee-40b1-ab18-25e843cad6b8.jpg)
+
+원래 값인 2에 1이 더해져 3이라는 값이 출력됨
+
 
