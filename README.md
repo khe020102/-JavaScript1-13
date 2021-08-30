@@ -620,7 +620,7 @@ object는 스스로 계속 변경이 가능하므로 Mutable data type임
 
 ### Operator
 
-#### String concatenation
+1. String concatenation
 
 ```
 console.log('my' + ' cat'); // +를 이용해 문자열과 문자열을 합할 수 있음
@@ -658,7 +658,7 @@ console.log('ellie\'s \n\tbook');
 
 줄바꿈을 사용하려면 \n을 작성해주어야 하고 \t를 통해 들여쓰기도 가능함
 
-#### Numeric operators
+2. Numeric operators
 
 ```
 console.log(1 + 1);
@@ -674,15 +674,58 @@ console.log(2 ** 3);
 
 숫자들을 더하고 빼고 곱하고 나누고 나머지값, 2의 제곱과 같은 숫자를 연산할 수 있음
 
-#### Increment and decrement operators
+3. Increment and decrement operators
 
 ```
 let counter = 2;
-const preIncrement = ++counter; // ++counter는 counter = counter + 1;과 동일해 preIncrement에 3이라는 숫자가 저장됨
+const preIncrement = ++counter; 
+console.log(`preIncrement: ${preIncrement}, counter: ${counter}`);
 ```
 
 ![0830 18](https://user-images.githubusercontent.com/68580600/131301756-29fe1e4d-c9ee-40b1-ab18-25e843cad6b8.jpg)
 
+Increment : ++counter는 counter = counter + 1;과 동일해 preIncrement에 3이라는 숫자가 저장됨
+
 원래 값인 2에 1이 더해져 3이라는 값이 출력됨
+
+
+```
+const postIncrement = counter++;
+console.log(`preIncrement: ${postIncrement}, counter: ${counter}`);
+```
+
+![0830 19](https://user-images.githubusercontent.com/68580600/131306103-cbcfc2ab-59bd-4787-9a0c-3fc405c3f726.jpg)
+
+postIncrement : 변수 뒤에 ++를 붙이면 먼저 변수의 값을 counter라는 값을 할당한 뒤에 1을 증가시키는 것
+
+decrement(--a), postdecrement(a--)도 마찬가지
+
+4. Assignment operators
+
+```
+let x = 3;
+let y = 6;
+x += y; // x = x + y;
+x -= y;
+x *= y;
+x /= y;
+```
+
+반복되는 x를 생략해 x += y;와 같은 식으로 쓸 수 있음
+
+5. Comparison operators
+
+```
+console.log(10 < 6); // less than
+console.log(10 <= 6); // less than or equal
+console.log(10 > 6); // greater than
+console.log(10 >= 6); // greater than or equal
+```
+![0830 20](https://user-images.githubusercontent.com/68580600/131306814-afda43dc-17e9-47af-94fe-588099b61123.jpg)
+
+비교하는 연산자
+
+6. Logical operators: || (or), && (and), ! (not)
+
 
 
