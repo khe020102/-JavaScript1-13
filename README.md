@@ -984,5 +984,13 @@ for (let i = 0; i < 10; i++) {
 break : 루프를 완전히 끝내는 거 
 continue : 지금 것만 스킵하고 다음 스텝으로 넘어가는 것
 
-19:08
-https://www.youtube.com/watch?v=YBjufjBaxHo
+```
+for (let i = 0; i < 11; i++) { // i를 0으로 할당시키고 하나씩 증가시키면서 11보다 작을 때까지 반복
+    if (i % 2 !== 0) { // 만약 i가 2로 나눈 나머지가 0이 아니라면(홀수인 경우)
+        continue; // 다음 스텝으로 넘어감 (console이 출력되지 않도록)
+    }
+    console.log(`q1. ${i}`); // 
+}
+```
+
+
