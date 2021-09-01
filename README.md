@@ -727,6 +727,262 @@ console.log(10 >= 6); // greater than or equal
 
 6. Logical operators: || (or), && (and), ! (not)
 
-https://www.youtube.com/watch?v=YBjufjBaxHo
-8:02~
+- ||(or) : 
 
+```
+const value1 = false;
+const value2 = 4 < 2;
+
+console.log(`or: ${value1 || value2 || check()}`); // 세가지 중에서 하나라도 True라면 True로 계산됨
+
+function check() {
+    for (let i = 0; i < 10; i++) {
+            console.log('T_T');
+    }
+    return true;
+}
+```
+
+![0901 2](https://user-images.githubusercontent.com/68580600/131599825-19c94901-9d01-442d-8a56-139b7b737184.jpg)
+
+value1이 false로 이미 할당이 되어있고 value2는 4가 2보다 작다는 false이므로 false 할당되고 
+check라는 함수는 쓸데없이 시간을 낭비하다가 결국엔 true를 return하는 함수이므로 결국 
+false || false || true이므로 true로 return 됨
+
+or연산자는 처음으로 true가 나오면 연산을 멈춤
+    - 위 코드에서 value1이 true라면 check 함수를 실행하지 않음
+    ![0901 1](https://user-images.githubusercontent.com/68580600/131599847-f0cfed7d-1a88-470a-a6e2-c986921ca5cf.jpg)
+    - 연산을 많이 하는 함수를 호출하려면 간단한 value를 앞에 두고 함수는 뒤에 호출하는 것이 좋음
+    
+- &&(and) :
+
+```
+const value1 = true;
+const value2 = 4 < 2;
+
+console.log(`or: %{value1 && value2 && check()}`); // 세가지 모두가 true 여야 true를 return
+
+function check() {
+    for (let i = 0; i < 10; i++) {
+            console.log('T_T');
+    }
+    return true;
+}
+
+```
+
+![0901 3](https://user-images.githubusercontent.com/68580600/131602322-912bac9a-6879-494a-8578-b9f999e8ad58.jpg)
+
+and연산자는 처음으로 false가 나오면 연산을 멈춤
+
+간단하게 null체크할 때도 자주 쓰이는 연산자임
+    - object가 null이면 false가 되므로 뒤에가 실행이 안되므로 null인 object가 null이 아닐 때만 이 object에 something이라는 value를 받아오게 됨
+    - ```
+    if (nullableObject != null) {
+        nullableObject.something;
+    }
+      ```
+      
+- !(not) : 값을 반대로 바꿔줌
+
+```
+const value1 = true;
+
+console.log(!value1);
+```
+
+![0901 4](https://user-images.githubusercontent.com/68580600/131604516-66663541-772e-496a-80ba-66c881600238.jpg)
+
+
+7. Equality operators
+
+```
+const stringFive = '5';
+const numberFive = 5;
+
+console.log(stringFive == numberFive); // == : loose equality : type을 변경해서 검사함
+console.log(stringFive != numberFive); // 문자열5와 숫자5를 같다고 인식해 !을 붙여 false 출력
+
+console.log(stringFive === numberFive); // === : strict equality : type이 다르면 다르다고 인식
+console.log(stringFIve !== numberFive); // 문자열5와 숫자5를 다르다고 인식해 !을 붙여 true 출력
+```
+
+![화면 캡처 2021-09-01 120608](https://user-images.githubusercontent.com/68580600/131605227-e5f76461-312f-4b3e-a0c8-df87ece0c204.jpg)
+
+- object는 memory에 탑재될 때 reference 형태로 탑재됨
+
+```
+const ellie1 = { name: 'ellie' };
+const ellie2 = { name: 'ellie' };
+const ellie3 = ellie1;
+console.log(ellie1 == ellie2);
+console.log(ellie1 === ellie2);
+console.log(ellie1 === ellie3);
+```
+
+![화면 캡처 2021-09-01 121246](https://user-images.githubusercontent.com/68580600/131605729-765c8f71-4b59-4c99-bba8-648418cc00b2.jpg)
+
+ellie1과 ellie2는 똑같은 데이터가 들어있는 object지만 실제로 메모리엔 각각 다른 reference를 가져 서로 다른 object를 가진다고 볼 수 있고
+ellie3은 ellie1의 reference가 할당되어있으므로 같다고 볼 수 있음
+
+따라서 첫번째 console은 각각 다른 reference라고 인식해 false를 출력
+
+두번째 console은 똑같은 타입이든 아니든 값이 다르므로 false 출력
+
+세번째 console은 ellie1의 reference value를 ellie3으로 할당했으므로 둘이 똑같은 reference를 갖고 있다고 볼 수 있어 true 출력
+
+```
+console.log(0 == false); // 0은 false로 간주되므로 true
+console.log(0 === false); // 0은 boolean 타입이 아니므로 타입이 달라 false
+console.log('' == false); // ''은 false로 간주되므로 true 
+console.log('' === false); // ''은 boolean 타입이 아니므로 타입이 달라 false
+console.log(null == undefined); // true
+console.log(null === undefined); // 타입이 다르므로 false
+```
+
+![화면 캡처 2021-09-01 122213](https://user-images.githubusercontent.com/68580600/131606572-7b6a4964-b466-4fc6-8fea-0e3a4766b12b.jpg)
+
+8. If operators
+
+```
+const name = 'df';
+if (name === 'ellie') { // statement가 true면 그 안에 있는 block을 실행함
+    console.log('Welcome, Ellie!); // true면 출력
+}   else if (name === 'coder') { // ellie가 아닌 coder면
+    console.log('You are amazing coder'); // 출력
+}   else { // 위 두가지 둘 다 false면
+    console.log('unknown'); // 출력
+}
+```
+
+![화면 캡처 2021-09-01 174413](https://user-images.githubusercontent.com/68580600/131640955-22f54235-7c61-4cb8-8061-46423ac4bc97.jpg)
+
+name이 ellie도, coder도 아니므로 unknown 출력
+
+9. ? operators
+
+```
+console.log(name === 'ellie' ? 'yes' : 'no'); // true면 왼쪽에 있는 것을 실행하고 아니면 다음에 나오는 것을 실행하는 것
+```
+
+![화면 캡처 2021-09-01 174630](https://user-images.githubusercontent.com/68580600/131641305-79a66cbb-6217-4ee4-9305-de6af642362d.jpg)
+
+name이 ellie가 아니므로 no 출력
+
+
+10. switch operators
+
+```
+const browser = 'IE';
+switch (browser) { // browse 값이
+    case 'IE': // IE면
+        console.log('go away!'); // 출력
+        break;
+    case 'Chrome':
+        console.log('love you!');
+        break;
+    case 'Firefox':
+        console.log('love you!');
+        break;
+    default:
+        console.log('same all!');
+        break;
+    }
+```
+
+Chrome과 Firefox는 같은 메세지를 출력하므로 반복할 필요없이 
+
+```
+    case 'Chrome':
+    case 'Firefox':
+        console.log('love you!');
+        break;
+    default:
+```
+
+연달아서 작성 가능
+
+![화면 캡처 2021-09-01 175110](https://user-images.githubusercontent.com/68580600/131641952-76ebd659-7613-4459-bd24-7656fb1f1040.jpg)
+
+browser 값이 IE이므로 go away! 출력
+
+10. while loop
+
+```
+let i = 3;
+while (i > 0) { // statement가 false로 나오기 전까진 계속 반복해서 돔
+    console.log(`while: ${i}`);
+    i--;
+}
+```
+
+![화면 캡처 2021-09-01 175520](https://user-images.githubusercontent.com/68580600/131642536-49cba136-25e4-4ef2-9bbc-8cbc90383200.jpg)
+
+i를 점점 감소시켜 i가 0이 될 때까지 계속 반복하므로 3, 2, 1까지 반복문을 실행하고 출력함
+
+11. do-while loop
+
+```
+let i = 3;
+while (i > 0) { // statement가 false로 나오기 전까진 계속 반복해서 돔
+    console.log(`while: ${i}`);
+    i--;
+} // while 문을 다 실행하면 i가 0이 됨
+do { // 먼저 블럭을 실행한 뒤
+    console.log(`do while: ${i}`);
+    i--;
+} while (i > 0); // 조건이 맞는지 검사
+```
+
+![화면 캡처 2021-09-01 180209](https://user-images.githubusercontent.com/68580600/131643563-36e43ce5-0dd7-407b-99ea-75244e11c9c0.jpg)
+
+위 while 문을 실행하고 i가 0임에도 불구하고 do 블럭을 실행한 뒤 while (i > 0)으로 넘어가므로 do while: 0 이 출력됨
+
+블럭을 먼저 실행하고 싶다면 do-while, 조건문이 맞을 때만 실행하고 싶다면 while문을 사용해야 함
+
+12. for loop
+
+```
+let i = 3;
+while (i > 0) { // statement가 false로 나오기 전까진 계속 반복해서 돔
+    console.log(`while: ${i}`);
+    i--;
+} // while 문을 다 실행하면 i가 0이 됨
+do { // 먼저 블럭을 실행한 뒤
+    console.log(`do while: ${i}`);
+    i--;
+} while (i > 0); // 조건이 맞는지 검사
+
+for (i = 3; i > 0; i--) { // for(begin; condition; step) begin을 처음에 한 번만 호출하고 블럭 실행 전 condition으로 맞는지 검사한 다음 블럭이 실행되면 step이 실행되게 됨
+    console.log(`for: ${i}`);
+}
+
+for (let i = 3; i > 0; i = i - 2) { // for 안에서 지역변수를 선언할 수도 있음
+    console.log(`inline variable for: ${i}`);
+}
+```
+
+![화면 캡처 2021-09-01 180811](https://user-images.githubusercontent.com/68580600/131644505-e692c150-2a39-4b24-9f8a-f07167bd84d6.jpg)
+
+
+13. nested loop
+
+```
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) { // for 문 안에 for 문을 작성해 i가 0일 때 j를 0부터 9까지 반복문을 실행하게 한 다음 위 반복문을 다시 실행
+        console.log(`i: ${i}, j:${j}`);
+    }
+}
+```
+
+![화면 캡처 2021-09-01 181138](https://user-images.githubusercontent.com/68580600/131645018-1e4f5313-7bbb-40d6-a571-3599e91f007b.jpg)
+
+이 방법은 CPU에 좋지 않으므로 지양하는 게 좋음
+
+14. break, continue
+
+break : 루프를 완전히 끝내는 거 
+continue : 지금 것만 스킵하고 다음 스텝으로 넘어가는 것
+
+19:08
+https://www.youtube.com/watch?v=YBjufjBaxHo
