@@ -618,6 +618,8 @@ object는 스스로 계속 변경이 가능하므로 Mutable data type임
 
 자바스크립트에서는 기본적으로 모든 object는 변경이 가능함
 
+***
+
 ### Operator
 
 1. String concatenation
@@ -991,6 +993,167 @@ for (let i = 0; i < 11; i++) { // i를 0으로 할당시키고 하나씩 증가�
     }
     console.log(`q1. ${i}`); // 
 }
+```
+
+## 자바스크립트 4. Arrow Function은 무엇인가? 함수의 선언과 표현
+
+### Function : 프로그램을 구성하는 굉장히 기본적인 building block
+
+subprogram이라고도 불리며 여러번 재사용 가능한 장점이 있음
+
+대체적으로 function은 한 가지의 일이나 어떤 값을 계산하기 위해 쓰임
+
+#### Function declaration
+
+function name(param1, param2) { body... return; } 
+- function이라는 키워드를 이용하고 함수의 이름을 지정한 다음 param을 나열한 뒤 함수 안에 기본적인 business logic을 body에 작성한 다음 return을 해줌
+- 하나의 함수는 한 가지의 일만 하도록 만들어야 함
+- 이름을 작성할 땐 doSomething, command, verb 형태로 이름을 지정해야함
+- 자바스크립트에서 function은 object로 간주되어지므로 변수에 할당할 수도 있고 param에 전달할 수도, 함수를 return할 수도 있게 됨
+
+```
+function printHello() {
+    console.log('Hello');
+}
+printHello();
+```
+
+함수를 호출하면 Hello를 출력함
+
+```
+function log(message) {
+    console.log(message);
+}
+log('Hello@');
+```
+
+함수를 호출하면 호출할 때 (message)에 입력한 문자가 출력됨
+
+1. Parameters
+
+premitive 파일 같은 경우엔 메모리가 value에 저장되고 object엔 reference에 전달됨
+
+```
+function changeName(obj) { // 전달된 object의 이름을 coder로 변경해주는 함수
+    obj.name = 'coder';
+}
+const ellie = { name: 'ellie' }; // ellie라는 const를 정의한 다음 ellie라는 오브젝트를 만들어 할당해줌(reference에 ellie가 들어감)
+changeName(ellie);
+console.log(ellie);
+```
+
+함수 안에서 object의 값을 변경하게 되면 그 변경된 사항이 그대로 메모리에 적용되므로 추후에 변경된 사항을 확인할 수 있음
+
+2. Default Parameters
+
+```
+function showMessage(message, from) {
+    console.log(`${message} by ${from}`);
+}
+showMessage('Hi!'); // 함수를 호출할 때 message 하나만 전달함
+```
+
+![화면 캡처 2021-09-02 172542](https://user-images.githubusercontent.com/68580600/131809651-016baf64-a0d3-441f-abec-245a3e35bbee.jpg)
+
+from이 정의되지 않아 undefined 출력됨
+
+```
+function showMessage(message, from = 'unknown') { // parameter 옆에 원하는 default 값을 넣어 값을 전달하지 않을 때 default값으로 대체 되게 함
+    console.log(`${message} by ${from}`);
+}
+showMessage('Hi!');
+```
+
+![화면 캡처 2021-09-02 172949](https://user-images.githubusercontent.com/68580600/131810259-100a7711-2346-47c3-80b9-c1f9a1935fe6.jpg)
+
+3. Rest Parameters
+
+```
+function printAll(...args) { // ...를 작성하게 되면 Rest parameters로 배열 형태로 전달되게 됨
+    for (let i = 0; i < args.length; i++) { // 처음부터 args의 개수만큼 돌면서 출력하는 것
+        console.log(args[i]);
+    }
+    
+    for (const arg of args) { // 위 for문을 간단하게 문법을 이용해 작성 가능
+        console.log(arg);
+    }
+    
+    args.forEach((arg) => console.log(arg)); // 더 간단하게 배열의 forEach라는 함수형 언어도 사용 가능
+}
+printAll('dream', 'coding', 'ellie') // 인자를 3개로 전달 => 배열 형태로 전달
+
+
+```
+
+![화면 캡처 2021-09-02 173519](https://user-images.githubusercontent.com/68580600/131811162-ce3cc3d3-1d55-47c3-9609-fddf8a73addb.jpg)
+
+4. Local scope
+
+```
+let globalMessage = 'global';
+function printMessage() {
+    let message = 'hello';
+    console.log(message);
+    console.log(globalMessage);
+}
+printMessage();
+```
+
+![화면 캡처 2021-09-02 174751](https://user-images.githubusercontent.com/68580600/131813211-e3136514-7522-4c48-9f76-c64eb4f1b6d0.jpg)
+
+> 밖에서는 안이 보이지 않고 안에서만 밖을 볼 수 있음
+- block 안에서 변수를 선언 : 지역변수
+    - 안에서만 접근 가능해 밖에서 부르면 오류가 발생함
+    - 하지만 안에서는 global message를 볼 수 있고 출력이 가능함 : scope
+
+5. Return a value
+
+```
+function sum(a, b) { // 함수에서는 parameter로 값을 전달 받아서 
+    return a + b; // 계산된 값을 return할 수 있음
+}
+const result = sum(1, 2); // sum이라는 함수를 호출하게 되면 1과 2를 더해 3이 출력됨
+console.log(`sum: ${sum(1, 2)}`);
+```
+
+![화면 캡처 2021-09-02 175137](https://user-images.githubusercontent.com/68580600/131813840-07be73c7-2e58-4366-8468-21559f86da14.jpg)
+
+sum을 호출해 return 받은 3이 출력되어짐
+
+return 탕비이 없는 함수들은 return undefined가 들어가있는 거랑 똑같으므로 생략 가능
+
+6. Early return
+
+```
+function upgradeUser(user) {
+    if (user.point > 10) { //user.point가 10 초과인 경우 무언가를 업그레이드하는 logic
+            // long upgrade logic...
+    }
+}
+
+function upgradeUser(user) {
+    if (user.point <= 10) { //user.point가 10 이하인 경우 return하고 함수를 종료
+        return;
+    }
+        // long upgrade logic...
+}
+```
+
+블럭 안에 logic을 많이 작성하면 가독성이 떨어지므로 조건이 맞지 않을 땐 빨리 return해 함수를 종료하고
+
+조건이 맞을 때만 필요한 logic을 실행하는 것이 좋음
+
+#### Function expression
+
+```
+const print = function () { // 함수를 선언함과 동시에 (anonymous function : 함수에 이름이 없는 것, named function : 이름이 있는 함수)
+    console.log('print'); // 바로 print라는 변수에 할당하고 함수를 호출하듯이 호출하면 print가 출력됨
+};
+print(); // 함수를 print에 할당했으므로 함수
+const printAgain = print; // 함수를 변수에 할당
+printAgain();
+const sumAgain = sum; // 함수를 변수에 할당
+console.log(sumAgain(1, 3));
 ```
 
 
