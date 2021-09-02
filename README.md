@@ -995,7 +995,7 @@ for (let i = 0; i < 11; i++) { // i를 0으로 할당시키고 하나씩 증가�
 }
 ```
 
-## 자바스크립트 4. Arrow Function은 무엇인가? 함수의 선언과 표현
+## 자바스크립트 5. Arrow Function은 무엇인가? 함수의 선언과 표현
 
 ### Function : 프로그램을 구성하는 굉장히 기본적인 building block
 
@@ -1156,4 +1156,385 @@ const sumAgain = sum; // 함수를 변수에 할당
 console.log(sumAgain(1, 3));
 ```
 
+#### Callback function : 상황이 맞으면 전달된 함수를 부르는 것
+
+```
+function randomQuiz(answer, printYes, printNo) { // (정답, 정답이 맞았을 때 호출할 함수, 틀렸을 때 호출할 함수)
+    if (answer === 'love you') {
+        printYes();
+    } else {
+      printNo();
+    }
+}
+
+const printYes = function () { // anonymous function
+    console.log('yes!');
+};
+
+const printNo = function print() { // named function : 디버깅할 때 함수이름이 나오게 하기위해 쓰는 것
+    console.log('no!');
+}
+
+randomQuiz('wrong', printYes, printNo);
+randomQuiz('love you', printYes, printNo);
+```
+
+#### arrow function : 함수를 간결하게 만들어줌, 항상 anonymous function
+
+```
+const simplePrint = function () {
+    console.log('simplePrint!');
+}; // 이것을 간결하게 만들면
+
+const simplePrint = () => console.log('simplePrint!'); // arrow function
+const add = (a, b) => a + b; // arrow function : function이라는 키워드, 블럭 넣기, return 키워드 넣기를 하지 않아도 됨
+```
+
+#### IIFE : 선언함과 동시에 같이 호출할 수 있음
+
+```
+(function hello() {
+    console.log('IIFE');
+})(); // 함수의 선언을 괄호로 묶은 다음 함수를 호출하듯이 ();를 써주면 바로 함수가 호출됨
+```
+
+## 자바스크립트 6. 클래스와 오브젝트의 차이점(class vs object), 객체지향 언어 클래스 정리
+
+
+```
+class person{
+    name;
+    age;
+    speak;
+}
+```
+
+class : 연관있는 데이터를 한 데 묶어놓는 컨테이너
+- 클래스 자체엔 데이터가 들어있지 않고 template만 정의되어 있음
+
+object : class를 이용해 실제로 데이터를 넣어서 만드는 것
+
+### Class 선언
+
+```
+class Person { // 사람이라는 class를 만들고
+    constructor(name, age) { // 생성자를 이용해 나중에 object를 만들 때 필요한 데이터를 전달
+        this.name = name;
+        this.age = age;
+    }
+    
+    
+    speak() {
+        console.log(`${this.name}: hello!`);
+    }    
+}
+
+```
+
+### Obhect 생성
+
+```
+const ellie = new Person('ellie', 20); // 새로운 오브젝트를 만들기 위해 new 사용
+console.log(ellie.name);
+console.log(ellie.age);
+ellie.speak();
+```
+
+![화면 캡처 2021-09-02 210750](https://user-images.githubusercontent.com/68580600/131840837-3a054865-82b0-45ff-99a0-d51da5736335.jpg)
+
+### Getter & Setter
+
+```
+class User {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+     }
+}
+
+const user1 = new User('Steve', 'Job', -1); // 사용자가 실수로 나이를 -1로 지정하면
+console.log(user1.age); // 그대로 -1 출력되는데 이를 막아주는 것이 Getter and setters
+```
+
+Getter & Setter를 이용하면
+
+```
+class User {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+     }
+
+     get age() { // get이라는 키워드를 이용해 값을 return
+            return this.age;
+     }
+
+     set age(value) { // set이라는 키워드를 이용해 값을 설정할 수 있음(값을 설정하므로 value를 받아와야 함)
+            this.age = value;
+     }
+}
+
+const user1 = new User('Steve', 'Job', -1); // 사용자가 실수로 나이를 -1로 지정하면
+console.log(user1.age); // 그대로 -1 출력되는데 이를 막아주는 것이 Getter and setters
+```
+
+![화면 캡처 2021-09-02 211852](https://user-images.githubusercontent.com/68580600/131842218-a69843d7-103e-492f-97f0-9768ea091859.jpg)
+
+age라는 getter를 정의하는 순간 this.age의 메모리를 읽어오는 것이 아닌 getter를 호출하게 됨
+
+setter를 정의하는 순간 = age; 값을 할당할 때 setter를 호출하게 됨
+- setter 안에서 전달된 value를 this.age에 할당할 때 메모리의 값을 업데이트 하는 것이 아닌 setter를 호출하게 되는 것
+    - setter로 돌아와서 또 setter를 호출하는 것이 반복되어 오류가 발생하는 것
+
+이를 방지하기 위해 getter, setter에서 쓰여지는 변수의 이름을 다른 것으로 만들어주어야 함
+
+```
+class User {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+     }
+
+     get age() { // get이라는 키워드를 이용해 값을 return
+            return this._age; // this.age를 this._age로 변경
+     }
+
+     set age(value) { // set이라는 키워드를 이용해 값을 설정할 수 있음(값을 설정하므로 value를 받아와야 함)
+        if (value < 0) {
+            throw Error('age can not be negative');
+        }    
+        
+        this._age = value; // this.age를 this._age로 변경
+     }
+}
+
+const user1 = new User('Steve', 'Job', -1); // 사용자가 실수로 나이를 -1로 지정하면
+console.log(user1.age); // 그대로 -1 출력되는데 이를 막아주는 것이 Getter and setters
+```
+
+![화면 캡처 2021-09-02 212541](https://user-images.githubusercontent.com/68580600/131843118-1ecd1ec1-c4b9-4b7f-bf94-dc6705ae7b39.jpg)
+
+오류를 발생시키고 싶지 않다면
+
+```
+class User {
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+     }
+
+     get age() { // get이라는 키워드를 이용해 값을 return
+            return this._age; // this.age를 this._age로 변경
+     }
+
+     set age(value) { // set이라는 키워드를 이용해 값을 설정할 수 있음(값을 설정하므로 value를 받아와야 함)
+        // if (value < 0) {
+        //    throw Error('age can not be negative');
+        // }    
+        
+        this._age = value < 0 ? 0 : value; // value가 값이 -라면 0을 쓰고 아니면 value를 쓰겠다
+     }
+}
+
+const user1 = new User('Steve', 'Job', -1); // 사용자가 실수로 나이를 -1로 지정하면
+console.log(user1.age); // 그대로 -1 출력되는데 이를 막아주는 것이 Getter and setters
+```
+
+setter 부분을 변경하여도 좋음(0으로 출력되어짐)
+
+### Public & Private
+
+```
+// 3. Fields (public, private)
+// Too soon!
+
+class Experiment {
+    publicField = 2;
+    #privateField = 0; // 클래스 내부에서만 값이 보여지고 접근되고 변경 가능함
+}
+const experiment = new Experiment(); 
+console.log(experiment.publicField);
+console.log(experiment.privateField);
+```
+
+![화면 캡처 2021-09-02 213405](https://user-images.githubusercontent.com/68580600/131844263-6ab3bc61-1c1f-471a-bb54-bfce278ecf3f.jpg)
+
+### Static
+
+```
+// 4. Static properties and methods
+// Too soon!
+
+class Article {
+    static publisher = 'Dream Coding'; // object에 상관없이 class 자체에 연결됨
+    constructor(articleNumber) {
+        this.articleNumber = articleNumber;
+    }
+
+    static printPublisher() {
+        console.log(Article.publisher);
+    }
+}
+
+const article1 = new Article(1);
+const article2 = new Article(2); // article 1, 2라는 object를 만들면 static을 사용하지 않았다면 
+console.log(article1.publisher); // 오브젝트를 이용해 오브젝트.publisher를 출력할 수 있었을 것임
+```
+
+![화면 캡처 2021-09-02 213946](https://user-images.githubusercontent.com/68580600/131845023-8583e918-1337-49e8-91c8-43584603f025.jpg)
+
+publisher 값이 지정되지 않다고 undeined가 출력됨
+
+static은 object마다 할당되어지는 것이 아니라 class 자체에 붙어있기 때문임
+
+```
+// 4. Static properties and methods
+// Too soon!
+
+class Article {
+    static publisher = 'Dream Coding'; // object에 상관없이 class 자체에 연결됨
+    constructor(articleNumber) {
+        this.articleNumber = articleNumber;
+    }
+
+    static printPublisher() {
+        console.log(Article.publisher);
+    }
+}
+
+const article1 = new Article(1);
+const article2 = new Article(2); // article 1, 2라는 object를 만듦
+console.log(Article).publisher); // object가 아닌 class를 이용해 publisher 출력
+
+```
+
+![화면 캡처 2021-09-02 214239](https://user-images.githubusercontent.com/68580600/131845425-00ce2e0f-97da-4ebe-8167-c99afad1c78f.jpg)
+
+Article.printPublisher(); 라고 작성해도 출력 가능
+
+### 상속 & 다양성
+
+```
+// 5. Inheritance
+// a way for one class to extend another class.
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    } // shape이라는 class 안에 3가지의 fields,
+
+    draw() {
+        console.log(`drawing ${this.color} color of`);
+    }
+
+    getArea() {
+        return this.width * this.height; // 2가지의 methods가 존재
+    }
+}
+
+class Rectangle extends Shape { // 동일하게 반복할 필요없이 extends라는 키워드를 이용해 shape을 연장해 shape에 있던 Fields, Methods가 자동적으로 포함됨
+}
+
+const rectangle = new Rectangle(20, 20, 'blue');
+rectangle.draw();
+```
+
+![화면 캡처 2021-09-02 215122](https://user-images.githubusercontent.com/68580600/131846805-e30d5ba8-4353-40aa-b065-59020811aea9.jpg)
+
+extends를 이용해 만든 Rectangle이 잘 출력됨
+
+```
+// 5. Inheritance
+// a way for one class to extend another class.
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    } // shape이라는 class 안에 3가지의 fields,
+
+    draw() {
+        console.log(`drawing ${this.color} color of`);
+    }
+
+    getArea() {
+        return this.width * this.height; // 2가지의 methods가 존재
+    }
+}
+
+class Rectangle extends Shape { // 동일하게 반복할 필요없이 extends라는 키워드를 이용해 shape을 연장해 shape에 있던 Fields, Methods가 자동적으로 포함됨
+}
+class Triangle extends Shape {}
+
+const rectangle = new Rectangle(20, 20, 'blue');
+rectangle.draw();
+console.log(rectangle.getArea());
+const triangle = new Triangle(20, 20, 'red');
+triangle.draw();
+console.log(triangle.getArea());
+```
+
+![화면 캡처 2021-09-02 215729](https://user-images.githubusercontent.com/68580600/131847600-3e9353a9-e4c5-487f-8b8d-1daaa93e492d.jpg)
+
+계산 값은 맞지만 Triangle은 삼각형이므로 width * height * 1/2를 계산해야함
+
+이 때 다양성이 빛을 발해야 하는데 우리는 필요한 함수만 재정의 할 수 있음
+
+```
+// 5. Inheritance
+// a way for one class to extend another class.
+class Shape {
+    constructor(width, height, color) {
+        this.width = width;
+        this.height = height;
+        this.color = color;
+    } // shape이라는 class 안에 3가지의 fields,
+
+    draw() {
+        console.log(`drawing ${this.color} color of`);
+    }
+
+    getArea() {
+        return this.width * this.height; // 2가지의 methods가 존재
+    }
+}
+
+class Rectangle extends Shape { // 동일하게 반복할 필요없이 extends라는 키워드를 이용해 shape을 연장해 shape에 있던 Fields, Methods가 자동적으로 포함됨
+}
+class Triangle extends Shape {
+    draw() {
+        super.draw(); // 재정의한 함수 뿐만 아니라 공통적으로 정의한 함수를 이용하기 위해 호출
+        console.log('삼각형');
+    }
+    getArea() {
+        return (this.width * this.height) / 2;
+    }
+}
+
+const rectangle = new Rectangle(20, 20, 'blue');
+rectangle.draw();
+console.log(rectangle.getArea());
+const triangle = new Triangle(20, 20, 'red');
+triangle.draw();
+console.log(triangle.getArea());
+```
+
+![image](https://user-images.githubusercontent.com/68580600/131848226-a9c40bcd-f6e7-4a2b-ac52-82f02a840939.png)
+
+### Instanceof : 왼쪽에 이는 object가 오른쪽에 있는 class 인지 아닌지 확인하는 것(True, False return)
+
+```
+console.log(rectangle instanceof Rectangle);
+console.log(triangle instanceof Rectangle);
+console.log(triangle instanceof Triangle);
+console.log(triangle instanceof Shape);
+console.log(triangle instanceof Object); // 자바스크립트에서 만든 모든 Object class는 자바스크립트의 object를 상속함
+```
+
+![화면 캡처 2021-09-02 220608](https://user-images.githubusercontent.com/68580600/131848740-de97d4a6-74b6-4f44-abb5-7fec5805e1c0.jpg)
 
