@@ -1003,6 +1003,8 @@ subprogram이라고도 불리며 여러번 재사용 가능한 장점이 있음
 
 대체적으로 function은 한 가지의 일이나 어떤 값을 계산하기 위해 쓰임
 
+***
+
 #### Function declaration
 
 function name(param1, param2) { body... return; } 
@@ -1156,6 +1158,8 @@ const sumAgain = sum; // 함수를 변수에 할당
 console.log(sumAgain(1, 3));
 ```
 
+***
+
 #### Callback function : 상황이 맞으면 전달된 함수를 부르는 것
 
 ```
@@ -1179,6 +1183,8 @@ randomQuiz('wrong', printYes, printNo);
 randomQuiz('love you', printYes, printNo);
 ```
 
+***
+
 #### arrow function : 함수를 간결하게 만들어줌, 항상 anonymous function
 
 ```
@@ -1189,6 +1195,8 @@ const simplePrint = function () {
 const simplePrint = () => console.log('simplePrint!'); // arrow function
 const add = (a, b) => a + b; // arrow function : function이라는 키워드, 블럭 넣기, return 키워드 넣기를 하지 않아도 됨
 ```
+
+***
 
 #### IIFE : 선언함과 동시에 같이 호출할 수 있음
 
@@ -1214,6 +1222,8 @@ class : 연관있는 데이터를 한 데 묶어놓는 컨테이너
 
 object : class를 이용해 실제로 데이터를 넣어서 만드는 것
 
+***
+
 ### Class 선언
 
 ```
@@ -1231,6 +1241,8 @@ class Person { // 사람이라는 class를 만들고
 
 ```
 
+***
+
 ### Obhect 생성
 
 ```
@@ -1241,6 +1253,8 @@ ellie.speak();
 ```
 
 ![화면 캡처 2021-09-02 210750](https://user-images.githubusercontent.com/68580600/131840837-3a054865-82b0-45ff-99a0-d51da5736335.jpg)
+
+***
 
 ### Getter & Setter
 
@@ -1346,6 +1360,8 @@ console.log(user1.age); // 그대로 -1 출력되는데 이를 막아주는 것�
 
 setter 부분을 변경하여도 좋음(0으로 출력되어짐)
 
+***
+
 ### Public & Private
 
 ```
@@ -1362,6 +1378,8 @@ console.log(experiment.privateField);
 ```
 
 ![화면 캡처 2021-09-02 213405](https://user-images.githubusercontent.com/68580600/131844263-6ab3bc61-1c1f-471a-bb54-bfce278ecf3f.jpg)
+
+***
 
 ### Static
 
@@ -1415,6 +1433,8 @@ console.log(Article).publisher); // object가 아닌 class를 이용해 publishe
 ![화면 캡처 2021-09-02 214239](https://user-images.githubusercontent.com/68580600/131845425-00ce2e0f-97da-4ebe-8167-c99afad1c78f.jpg)
 
 Article.printPublisher(); 라고 작성해도 출력 가능
+
+***
 
 ### 상속 & 다양성
 
@@ -1526,7 +1546,9 @@ console.log(triangle.getArea());
 
 ![image](https://user-images.githubusercontent.com/68580600/131848226-a9c40bcd-f6e7-4a2b-ac52-82f02a840939.png)
 
-### Instanceof : 왼쪽에 이는 object가 오른쪽에 있는 class 인지 아닌지 확인하는 것(True, False return)
+***
+
+### Instanceof : 왼쪽에 있는 object가 오른쪽에 있는 class 인지 아닌지 확인하는 것(True, False return)
 
 ```
 console.log(rectangle instanceof Rectangle);
@@ -1537,4 +1559,71 @@ console.log(triangle instanceof Object); // 자바스크립트에서 만든 모�
 ```
 
 ![화면 캡처 2021-09-02 220608](https://user-images.githubusercontent.com/68580600/131848740-de97d4a6-74b6-4f44-abb5-7fec5805e1c0.jpg)
+
+
+## 자바스크립트 7. 오브젝트 넌 뭐니?
+
+1. Object란?
+
+```
+const name = 'ellie';
+const age = 4;
+print(name, age) 
+function print(name, age) {
+    console.log(name);
+    console.log(age);
+}
+```
+
+premitive 타입은 변수 하나당 값을 하나만 담을 수 있음
+
+그래서 출력하고 싶은 함수를 만드려면 name, age를 각각 parameter에 전달해주엉함
+
+함수를 정의할 때도 2가지의 parameter를 받아올수 있도록 만들어야 함
+
+이렇게 하면 인자가 많아질수록 추가해야할 것이 굉장히 많아져 관리하기 힘듦
+
+이를 개선하기 위해 **object** 를 쓰는 것임
+
+```
+const obj1 = {}; // 오브젝트 만드는 법 1 : object literal
+const obj2 = new Object(); // 오브젝트 만드는 법 2 : new를 이용해 class로 만듦 : object constructor
+
+print(name, age) 
+function print(person) { // 인자를 따로 받지않고 person으로 한 번에 받을 수 있음
+    console.log(person.name);
+    console.log(person.age); 
+}
+
+const ellie = { name: 'ellie', age: 4 }; // 이렇게 object로 관리하면 name, age를 따로 안 받아도 됨
+print(ellie);
+```
+
+```
+ellie.hasJob = true;
+console.log(ellie.hasJob);
+```
+
+자바스크립트는 동적으로 타입이 Runtime(프로그램이 동작할 때)때 결정되는 언어이므로 뒤늦게 하나의 property 추가 가능
+
+```
+delete ellie.hasJob;
+console.log(ellie.hasJob);
+```
+또한 삭제도 가능하기 때문에 이를 출력하면 undefined로 출력됨
+
+**object는 { key : value } key와 value의 집합체임**
+
+- const ellie = { name: 'ellie', age: 4 };에서 총 두가지의 key와 그의 상응하는 value가 들어감
+
+
+2. object['key'] : 계산된 properties
+
+```
+console.log(ellie.name); // object의 데이터를 접근할 땐 .을 이용해 접근했지만
+console.log(elle['name']) // 괄호를 이용해 object안에 변수를 string 형태로 접근할 수 있음
+```
+property는 string으로 작성해야하므로 ''를 빼면 값이 나오지 않음
+
+
 
